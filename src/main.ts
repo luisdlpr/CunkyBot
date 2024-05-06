@@ -1,12 +1,7 @@
 // Require the necessary discord.js classes
-import {
-  Client,
-  Events,
-  GatewayIntentBits,
-  SlashCommandBuilder,
-  Collection,
-} from "discord.js";
-import "dotenv/config";
+import { Client, Events, GatewayIntentBits } from 'discord.js';
+import 'dotenv/config';
+import COMMANDS from './commands/index.js';
 
 const token = process.env.DISCORD_TOKEN;
 
@@ -14,32 +9,18 @@ const token = process.env.DISCORD_TOKEN;
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 // When the client is ready, run this code (only once).
-// The distinction between `client: Client<boolean>` and `readyClient: Client<true>` is important for TypeScript developers.
-// It makes some properties non-nullable.
 client.once(Events.ClientReady, (readyClient) => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
-client.commands = new Collection();
-
-const testCommand = {
-  data: new SlashCommandBuilder().setName("test").setDescription("cunk"),
-  async execute(interaction) {
-    await interaction.reply("Pong");
-  },
-};
-
-client.commands.set(testCommand.data.name, testCommand);
+// Register commands.
+client.commands = COMMANDS;
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (interaction.isChatInputCommand()) {
-    console.log(interaction);
-
     const command = interaction.client.commands.get(interaction.commandName);
     if (!command) {
-      console.error(
-        `No command matching ${interaction.commandName} was found.`,
-      );
+      console.error(`No command matching ${interaction.commandName} was found.`);
       return;
     }
 
@@ -49,12 +30,12 @@ client.on(Events.InteractionCreate, async (interaction) => {
       console.error(error);
       if (interaction.replied || interaction.deferred) {
         await interaction.followUp({
-          content: "There was an error while executing this command!",
+          content: 'There was an error while executing this command!',
           ephemeral: true,
         });
       } else {
         await interaction.reply({
-          content: "There was an error while executing this command!",
+          content: 'There was an error while executing this command!',
           ephemeral: true,
         });
       }
