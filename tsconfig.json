@@ -10,7 +10,7 @@
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"],
-  "files": ["src/types/global-discordjs.d.ts"],
+  "files": ["src/types/discordjs.d.ts"],
   "ts-node": { "files": true },
   "extends": "@tsconfig/node18/tsconfig.json"
 }
