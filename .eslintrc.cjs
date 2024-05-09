@@ -1,8 +1,8 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
-  extends: ['airbnb', 'plugin:@typescript-eslint/recommended'],
-  ignorePatterns: ['node_modules', 'dist'],
+  extends: ['airbnb/base', 'plugin:@typescript-eslint/recommended'],
+  ignorePatterns: ['node_modules', 'dist', 'coverage'],
   overrides: [
     {
       env: {
@@ -19,6 +19,12 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/*.test.ts', '**/*.test.tsx'],
+      },
+    ],
     'object-curly-newline': 'off',
     'comma-dangle': 'off',
     'no-console': 'off',

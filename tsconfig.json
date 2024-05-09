@@ -9,7 +9,7 @@
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "src/tests"],
   "files": ["src/types/discordjs.d.ts"],
   "ts-node": { "files": true },
   "extends": "@tsconfig/node18/tsconfig.json"
