@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "typeRoots": ["src/types/*.d.ts", "node_modules/@types"],
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/tests"],
+  "files": ["src/types/discordjs.d.ts"],
+  "ts-node": { "files": true },
+  "extends": "@tsconfig/node18/tsconfig.json"
+}
