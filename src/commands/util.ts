@@ -1,9 +1,9 @@
-import { SlashCommandBuilder, CommandInteraction } from 'discord.js';
+import { SlashCommandBuilder } from 'discord.js';
 import { SlashCommand } from '../types/discordjs.js';
 
-const testCommand: SlashCommand = {
+export const testCommand: SlashCommand = {
   data: new SlashCommandBuilder().setName('test').setDescription('Test the CunkyBot'),
-  async execute(interaction: CommandInteraction) {
+  async execute(interaction) {
     await interaction.reply('Pong');
   },
 };

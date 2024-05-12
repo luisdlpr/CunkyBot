@@ -24,7 +24,7 @@ export default async function interactionCreateHandler(interaction: BaseInteract
     }
 
     try {
-      await command.execute(commandInteraction);
+      command.execute(commandInteraction);
     } catch (error) {
       console.error(error);
       await handleCommandInteractionError(commandInteraction);
