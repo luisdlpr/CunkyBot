@@ -1,8 +1,5 @@
 void setBuildStatus(String message, String context, String state) {
-  // add a Github access token as a global 'secret text' credential on Jenkins with the id 'github-commit-status-token'
-    withCredentials([string(credentialsId: 'github-commit-status-token', variable: 'TOKEN')]) {
-      // 'set -x' for debugging. Don't worry the access token won't be actually logged
-      // Also, the sh command actually executed is not properly logged, it will be further escaped when written to the log
+    withCredentials([string(credentialsId: '8a9dd268-c905-4077-90c9-0d1c1ce94358', variable: 'TOKEN')]) {
         sh """
             set -x
             curl \"https://api.github.com/repos/org/repo/statuses/$GIT_COMMIT?access_token=$TOKEN\" \
