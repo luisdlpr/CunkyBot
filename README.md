@@ -29,3 +29,9 @@ An open-source, multi-purpose discord bot!
     "format": Format your src code,
     "test": Test your src code (run tests under src/tests)
 ```
+
+## CI/CD
+
+Linting, Testing, and Automated Deployment are done through a Jenkins pipeline. The Jenkinsfile can
+be seen in the root of the repository. This can be copied and set up on your own server for a
+similar setup!
