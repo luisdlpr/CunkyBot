@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node --loader ts-node/esm src/main.ts",
     "build": "tsc",
-    "postbuild": "cp package.json dist/package.json && cd dist && npm install --only=production"
+    "postbuild": "cp package.json dist/package.json && cd dist && npm install --only=production",
     "preview": "node dist/main.js",
     "lint": "eslint .",
     "format": "prettier . --write",
