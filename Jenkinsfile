@@ -19,7 +19,7 @@ pipeline {
     stages {
         stage('Clone') {
           steps {
-            git 'https://github.com/luisdlpr/CunkyBot/git'
+            git 'https://github.com/luisdlpr/CunkyBot.git'
           }
         }
         stage('Install dependencies') {
