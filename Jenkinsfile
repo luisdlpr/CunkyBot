@@ -19,7 +19,10 @@ pipeline {
     stages {
         stage('Clone') {
           steps {
-            git 'https://github.com/luisdlpr/CunkyBot.git'
+            withCredentials([gitUsernamePassword(credentialsId: 'luisdlpr',
+              gitToolName: 'git-tool')]) {
+                git 'git@github.com:luisdlpr/CunkyBot.git'
+              }
           }
         }
         stage('Install dependencies') {
