@@ -17,9 +17,20 @@ pipeline {
     tools {nodejs "node"}
 
     stages {
-        stage('Example') {
+        stage('Clone') {
           steps {
-            sh 'npm config ls'
+            git 'https://github.com/luisdlpr/CunkyBot/git'
+          }
+        }
+        stage('Install dependencies') {
+          steps {
+            sh 'npm install'
+          }
+        }
+        stage('Lint and Test') {
+          steps {
+            sh 'npm run lint'
+            sh 'npm run test'
           }
         }
         stage('Stage') {
