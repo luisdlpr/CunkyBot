@@ -47,7 +47,9 @@ pipeline {
         }
         stage('Build and Deploy') {
           when {
-            buildingTag()
+            expression {
+              env.BRANCH_NAME == 'main'
+            }
           }
           steps {
             script {
