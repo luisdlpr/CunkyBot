@@ -31,6 +31,7 @@ pipeline {
           steps {
             sh 'rm -rf ./dist'
             sh 'npm run build'
+            sh 'npm run postbuild'
             sh 'rm -rf /var/lib/jenkins/cunkybot/*'
             sh 'cp -r ./dist /var/lib/jenkins/cunkybot'
           }
