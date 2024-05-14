@@ -14,7 +14,14 @@ void setBuildStatus(String message, String context, String state) {
 
 pipeline {
     agent any
+    tools {nodejs "node"}
+
     stages {
+        stage('Example') {
+          steps {
+            sh 'npm config ls'
+          }
+        }
         stage('Stage') {
             steps {
                 setBuildStatus("Compiling", "compile", "pending");
