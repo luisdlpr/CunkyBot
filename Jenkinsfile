@@ -32,8 +32,9 @@ pipeline {
             sh 'rm -rf ./dist'
             sh 'npm run build'
             sh 'npm run postbuild'
-            sh 'rm -rf /var/lib/jenkins/cunkybot/*'
+            sh 'rm -rf /var/lib/jenkins/cunkybot/dist'
             sh 'cp -r ./dist /var/lib/jenkins/cunkybot'
+            sh 'pm2 restart cunkybot'
           }
         }
         stage('Stage') {
