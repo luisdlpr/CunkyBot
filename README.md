@@ -1,6 +1,6 @@
 # Cunky Discord Bot
 
-An open-source, multi-purpose discord bot!
+a An open-source, multi-purpose discord bot!
 
 # Discord Bot Setup
 
