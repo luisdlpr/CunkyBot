@@ -17,14 +17,7 @@ pipeline {
     tools {nodejs "node"}
 
     stages {
-        stage('Clone') {
-          steps {
-            withCredentials([sshUserPrivateKey(credentialsId: 'luisdlpr', keyFileVariable: 'SSH_KEY')]) {
-                sh 'GIT_SSH_COMMAND="ssh -i $GIT_SSH" git submodule update --init'
-                git 'git@github.com:luisdlpr/CunkyBot.git'
-              }
-          }
-        }
+        
         stage('Install dependencies') {
           steps {
             sh 'npm install'
