@@ -18,38 +18,51 @@ pipeline {
     stages {
         stage('Install dependencies') {
           steps {
-            sh 'npm install'
+            script {
+              try {
+                setBuildStatus("Installing", "install", "pending");
+                sh 'npm install'
+                setBuildStatus("Install Complete", "install", "success");
+              } catch (err) {
+                setBuildStatus("Failed", "install", "failure");
+                throw err
+              }
+            }
           }
         }
         stage('Lint and Test') {
           steps {
-            sh 'npm run lint'
-            sh 'npm run test'
+            script {
+              try {
+                setBuildStatus("Linting and Testing", "quality", "pending");
+                sh 'npm run lint'
+                sh 'npm run test'
+                setBuildStatus("Passed", "quality", "success");
+              } catch (err) {
+                setBuildStatus("Failed", "quality", "failure");
+                throw err
+              }
+            }
           }
         }
         stage('Build and Deploy') {
           steps {
-            sh 'rm -rf ./dist'
-            sh 'npm run build'
-            sh 'npm run postbuild'
-            sh 'rm -rf /var/lib/jenkins/cunkybot/dist'
-            sh 'cp -r ./dist /var/lib/jenkins/cunkybot'
-            sh 'pm2 restart cunkybot'
-          }
-        }
-        stage('Stage') {
-            steps {
-                setBuildStatus("Compiling", "compile", "pending");
-                script {
-                    try {
-                        // do the build here
-                        setBuildStatus("Build complete", "compile", "success");
-                    } catch (err) {
-                        setBuildStatus("Failed", "pl-compile", "failure");
-                        throw err
-                    }
-                }
+            script {
+              try {
+                setBuildStatus("Building and Deploying", "deploy", "pending");
+                  sh 'rm -rf ./dist'
+                  sh 'npm run build'
+                  sh 'npm run postbuild'
+                  sh 'rm -rf /var/lib/jenkins/cunkybot/dist'
+                  sh 'cp -r ./dist /var/lib/jenkins/cunkybot'
+                  sh 'pm2 restart cunkybot'
+                setBuildStatus("Passed", "deploy", "success");
+              } catch (err) {
+                setBuildStatus("Failed", "deploy", "failure");
+                throw err
+              }
             }
+          }
         }
     }
 }
