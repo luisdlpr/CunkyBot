@@ -29,7 +29,10 @@ pipeline {
         }
         stage('Build and Deploy') {
           steps {
-            sh 'ls'
+            sh 'rm -rf ./dist'
+            sh 'npm run build'
+            sh 'cp -r ./dist /var/lib/jenkins/cunkybot'
+            sh 'rm -rf /var/lib/jenkins/cunkybot/*'
           }
         }
         stage('Stage') {
