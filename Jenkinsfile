@@ -20,6 +20,7 @@ pipeline {
         stage('Clone') {
           steps {
             withCredentials([sshUserPrivateKey(credentialsId: 'luisdlpr')]) {
+                sh 'GIT_SSH_COMMAND="ssh -i $SSH_KEY" git submodule update --init'
                 git 'git@github.com:luisdlpr/CunkyBot.git'
               }
           }
