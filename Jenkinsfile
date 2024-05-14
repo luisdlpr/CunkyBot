@@ -19,8 +19,7 @@ pipeline {
     stages {
         stage('Clone') {
           steps {
-            withCredentials([gitUsernamePassword(credentialsId: 'luisdlpr',
-              gitToolName: 'git-tool')]) {
+            withCredentials([sshUserPrivateKey(credentialsId: 'luisdlpr')]) {
                 git 'git@github.com:luisdlpr/CunkyBot.git'
               }
           }
