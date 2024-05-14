@@ -15,9 +15,7 @@ void setBuildStatus(String message, String context, String state) {
 pipeline {
     agent any
     tools {nodejs "node"}
-
     stages {
-        
         stage('Install dependencies') {
           steps {
             sh 'npm install'
@@ -27,6 +25,11 @@ pipeline {
           steps {
             sh 'npm run lint'
             sh 'npm run test'
+          }
+        }
+        stage('Build and Deploy') {
+          steps {
+            sh 'ls'
           }
         }
         stage('Stage') {
